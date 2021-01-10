@@ -6,7 +6,7 @@ import './App.css';
 import Owner from './Components/Owner';
 import NewItem from './Components/NewItem'
 // import Cards from './Components/Cards'
-import ItemsList from './Components/ItemsList'
+// import ItemsList from './Components/ItemsList'
 import Navigation from './Components/Navigation'
 
 function App() {
@@ -14,14 +14,14 @@ function App() {
   return (
     
     <div>
-{/* <Navigation/>
+<Navigation/>
     
     <Switch>
       <Route path="/new-item" render={() => <NewItem/>}/>
       <Route path="/" render={() => <Owner/>}/>
-    </Switch> */}
+    </Switch>
 
-    <ItemsList/>
+    {/* <ItemsList/> */}
     </div>
 
   );

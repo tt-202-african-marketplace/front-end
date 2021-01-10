@@ -21,8 +21,11 @@ a {
 const Navigation = () => {
     return (
         <Navigationdiv>
-            <Link to="/order-form">Order</Link>
             <Link to="/">Home</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+            <Link to="/products">Products</Link>
+            <Link to="/shop-owners">Shop Owners</Link>
         </Navigationdiv>
     )
 }
