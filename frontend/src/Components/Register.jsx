@@ -1,10 +1,11 @@
-// import React, { Component } from "react";
-// import "./App.css";
 
+import React, { Component } from "react";
+import './Register.css';
+ 
+const emailRegex = RegExp(
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+);
 
-// const emailRegex = RegExp(
-//   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-// );
 
 // const formValid = ({ formErrors, ...rest }) => {
 //   let valid = true;
@@ -15,163 +16,180 @@
 //   });
 
  
-//   Object.values(rest).forEach(val => {
-//     val === null && (valid = false);
-//   });
 
-//   return valid;
-// };
+  Object.values(rest).forEach(val => {
+    val === null && (valid = false);
+  });
 
-// class Registration extends Component {
-//   constructor(props) {
-//     super(props);
+  return valid;
+};
 
-//     this.state = {
-//       firstName: null,
-//       lastName: null,
-//       email: null,
-//       password: null,
-//       formErrors: {
-//         firstName: "",
-//         lastName: "",
-//         email: "",
-//         password: ""
-//       }
-//     };
-//   }
+class Registration extends Component {
+  constructor(props) {
+    super(props);
 
-//   handleSubmit = e => {
-//     e.preventDefault();
+    this.state = {
+      firstName: null,
+      lastName: null,
+      email: null,
+      password: null,
+      formErrors: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        shopName: ""
+      }
+    };
+  }
 
-//     if (formValid(this.state)) {
-//       console.log(`
-//         --SUBMITTING--
-//         First Name: ${this.state.firstName}
-//         Last Name: ${this.state.lastName}
-//         Email: ${this.state.email}
-//         Password: ${this.state.password}
-//       `);
-//     } else {
-//       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-//     }
-//   };
+  handleSubmit = e => {
+    e.preventDefault();
 
-//   handleChange = e => {
-//     e.preventDefault();
-//     const { name, value } = e.target;
-//     let formErrors = { ...this.state.formErrors };
+    if (formValid(this.state)) {
+      console.log(`
+        --SUBMITTING--
+        First Name: ${this.state.firstName}
+        Last Name: ${this.state.lastName}
+        Email: ${this.state.email}
+        Password: ${this.state.password}
+        Shop Name: ${this.state.shopName}
+      `);
+    } else {
+      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+    }
+  };
 
-//     switch (name) {
-//       case "firstName":
-//         formErrors.firstName =
-//           value.length < 3 ? "minimum 3 characaters required" : "";
-//         break;
-//       case "lastName":
-//         formErrors.lastName =
-//           value.length < 3 ? "minimum 3 characaters required" : "";
-//         break;
-//       case "email":
-//         formErrors.email = emailRegex.test(value)
-//           ? ""
-//           : "invalid email address";
-//         break;
-//       case "password":
-//         formErrors.password =
-//           value.length < 6 ? "minimum 6 characaters required" : "";
-//         break;
-//       default:
-//         break;
-//     }
+  handleChange = e => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    let formErrors = { ...this.state.formErrors };
 
-//     this.setState({ formErrors, [name]: value }, () => console.log(this.state));
-//   };
+    switch (name) {
+      case "firstName":
+        formErrors.firstName =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "lastName":
+        formErrors.lastName =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "email":
+        formErrors.email = emailRegex.test(value)
+          ? ""
+          : "invalid email address";
+        break;
+      case "password":
+        formErrors.password =
+          value.length < 6 ? "minimum 6 characaters required" : "";
+        break;
+      default:
+        break;
+     case "shopName":
+     break;
+    }
 
-//   render() {
-//     const { formErrors } = this.state;
+    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+  };
 
-//     return (
-//       <div className="wrapper">
-//         <div className="form-wrapper">
-//           <h1>Create Account</h1>
-//           <form onSubmit={this.handleSubmit} noValidate>
-//             <div className="firstName">
-//               <label htmlFor="firstName">First Name</label>
-//               <input
-//                 className={formErrors.firstName.length > 0 ? "error" : null}
-//                 placeholder="First Name"
-//                 type="text"
-//                 name="firstName"
-//                 noValidate
-//                 onChange={this.handleChange}
-//               />
-//               {formErrors.firstName.length > 0 && (
-//                 <span className="errorMessage">{formErrors.firstName}</span>
-//               )}
-//             </div>
-//             <div className="lastName">
-//               <label htmlFor="lastName">Last Name</label>
-//               <input
-//                 className={formErrors.lastName.length > 0 ? "error" : null}
-//                 placeholder="Last Name"
-//                 type="text"
-//                 name="lastName"
-//                 noValidate
-//                 onChange={this.handleChange}
-//               />
-//               {formErrors.lastName.length > 0 && (
-//                 <span className="errorMessage">{formErrors.lastName}</span>
-//               )}
-//             </div>
-//             <div className="email">
-//               <label htmlFor="email">Email</label>
-//               <input
-//                 className={formErrors.email.length > 0 ? "error" : null}
-//                 placeholder="Email"
-//                 type="email"
-//                 name="email"
-//                 noValidate
-//                 onChange={this.handleChange}
-//               />
-//               {formErrors.email.length > 0 && (
-//                 <span className="errorMessage">{formErrors.email}</span>
-//               )}
-//             </div>
-//             <div className="password">
-//               <label htmlFor="password">Password</label>
-//               <input
-//                 className={formErrors.password.length > 0 ? "error" : null}
-//                 placeholder="Password"
-//                 type="password"
-//                 name="password"
-//                 noValidate
-//                 onChange={this.handleChange}
-//               />
-//               {formErrors.password.length > 0 && (
-//                 <span className="errorMessage">{formErrors.password}</span>
-//               )}
-//             </div>
-//             <div className="shopName">
-//               <label htmlFor="shopName">Shop Name</label>
-//               <input
-//                 placeholder="Shop Name"
-//                 type="text"
-//                 name="shopName"
-//                 noValidate
-//                 onChange={this.handleChange}
-//               />
-//              {formErrors.lastName.length > 0 && (
-//                 <span className="errorMessage">{formErrors.shopName}</span>
-//               )}
-//             </div>
-//             <div className="createAccount">
-//               <button type="submit">Create Account</button>
-//               <small>Already Have an Account?</small>
-//             </div>
-//           </form>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
+  render() {
+    const { formErrors } = this.state;
 
-// export default Registration;
+    return (
+      <div className="wrapper">
+        <div className="form-wrapper">
+          <h1>Create Account</h1>
+          <form onSubmit={this.handleSubmit} noValidate>
+            <div className="firstName">
+              <label htmlFor="firstName">First Name</label>
+              <input
+                className={formErrors.firstName.length > 0 ? "error" : null}
+                placeholder="First Name"
+                type="text"
+                name="firstName"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.firstName.length > 0 && (
+                <span className="errorMessage">{formErrors.firstName}</span>
+              )}
+            </div>
+            <div className="lastName">
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                className={formErrors.lastName.length > 0 ? "error" : null}
+                placeholder="Last Name"
+                type="text"
+                name="lastName"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.lastName.length > 0 && (
+                <span className="errorMessage">{formErrors.lastName}</span>
+              )}
+            </div>
+            <div className="email">
+              <label htmlFor="email">Email</label>
+              <input
+                className={formErrors.email.length > 0 ? "error" : null}
+                placeholder="Email"
+                type="email"
+                name="email"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.email.length > 0 && (
+                <span className="errorMessage">{formErrors.email}</span>
+              )}
+            </div>
+            <div className="password">
+              <label htmlFor="password">Password</label>
+              <input
+                className={formErrors.password.length > 0 ? "error" : null}
+                placeholder="Password"
+                type="password"
+                name="password"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.password.length > 0 && (
+                <span className="errorMessage">{formErrors.password}</span>
+              )}
+            </div>
+            <div className="shopName">
+              <label htmlFor="shopName">Shop Name</label>
+              <input
+                placeholder="Shop Name"
+                type="text"
+                name="shopName"
+                noValidate
+                onChange={this.handleChange}
+              />
+             {formErrors.shopName.length > 0 && (
+                <span className="errorMessage">{formErrors.shopName}</span>
+              )}
+            </div>
+<div className="location">
+  <label htmlFor="location"> Select Location  </label>
+  <form onSubmit={this.handleSubmit}>
+ <select value={this.state.value} onChange={this.handleChange}>          
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+        </select>
+      </form>
+   </div>
+            <div className="createAccount">
+              <button type="submit">Create Account</button>
+              <small>Already Have an Account? Click Here</small>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Registration;
+
+
