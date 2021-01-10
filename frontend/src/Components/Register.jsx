@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
-
-
+import './Register.css';
+ 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -35,7 +34,8 @@ class Registration extends Component {
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
+        password: "",
+        shopName: ""
       }
     };
   }
@@ -50,6 +50,7 @@ class Registration extends Component {
         Last Name: ${this.state.lastName}
         Email: ${this.state.email}
         Password: ${this.state.password}
+        Shop Name: ${this.state.shopName}
       `);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -81,6 +82,8 @@ class Registration extends Component {
         break;
       default:
         break;
+     case "shopName":
+     break;
     }
 
     this.setState({ formErrors, [name]: value }, () => console.log(this.state));
@@ -159,13 +162,23 @@ class Registration extends Component {
                 noValidate
                 onChange={this.handleChange}
               />
-             {formErrors.lastName.length > 0 && (
+             {formErrors.shopName.length > 0 && (
                 <span className="errorMessage">{formErrors.shopName}</span>
               )}
             </div>
+<div className="location">
+  <label htmlFor="location"> Select Location  </label>
+  <form onSubmit={this.handleSubmit}>
+ <select value={this.state.value} onChange={this.handleChange}>          
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+        </select>
+      </form>
+   </div>
             <div className="createAccount">
               <button type="submit">Create Account</button>
-              <small>Already Have an Account?</small>
+              <small>Already Have an Account? Click Here</small>
             </div>
           </form>
         </div>
@@ -175,3 +188,4 @@ class Registration extends Component {
 }
 
 export default Registration;
+
