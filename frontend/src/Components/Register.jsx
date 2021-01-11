@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { Component } from "react";
 import './Register.css';
  
@@ -21,39 +22,63 @@ const formValid = ({ formErrors, ...rest }) => {
   return valid;
 };
 
+const blankState = {
+  first_name: null,
+  last_name: null,
+  email: null,
+  password: null,
+  shop_name: null,
+  location_id: '',
+}
+
 class Registration extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstName: null,
-      lastName: null,
+      first_name: null,
+      last_name: null,
       email: null,
       password: null,
+      shop_name: null,
+      location_id: '',
       formErrors: {
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         email: "",
         password: "",
-        shopName: ""
+        shop_name: "",
+        location_id: ""
       }
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
-
     if (formValid(this.state)) {
+      const copyofState = {...this.state};
+      delete copyofState['formErrors'] ;
       console.log(`
         --SUBMITTING--
-        First Name: ${this.state.firstName}
-        Last Name: ${this.state.lastName}
+        First Name: ${this.state.first_name}
+        Last Name: ${this.state.last_name}
         Email: ${this.state.email}
         Password: ${this.state.password}
-        Shop Name: ${this.state.shopName}
+        Shop Name: ${this.state.shop_name}
+        Location: ${this.state.location_id}
       `);
+      axios.post('https://tt-202-african-marketplace.herokuapp.com/api/auth/register/owner', copyofState) 
+        .then(res => {
+          console.log(`AXIOS SUCCESS!`, res.data);
+          alert(res.data.message);
+        })
+        .catch(err => {
+          console.log(`AXIOS FAILURE!`, err);
+          alert(err);
+        })  
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+      alert('there was an error!')
     }
   };
 
@@ -63,13 +88,13 @@ class Registration extends Component {
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
-      case "firstName":
-        formErrors.firstName =
+      case "first_name":
+        formErrors.first_name =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
-      case "lastName":
-        formErrors.lastName =
-          value.length < 3 ? "minimum 3 characaters required" : "";
+      case "last_name":
+        formErrors.last_name =
+          value.length < 3 ? "minimum 3 characters required" : "";
         break;
       case "email":
         formErrors.email = emailRegex.test(value)
@@ -78,12 +103,14 @@ class Registration extends Component {
         break;
       case "password":
         formErrors.password =
-          value.length < 6 ? "minimum 6 characaters required" : "";
+          value.length < 6 ? "minimum 6 characters required" : "";
+        break;
+      case "shop_name": 
+        formErrors.shop_name =
+          value.length < 3 ? "minimum 3 characters required" : "";
         break;
       default:
         break;
-     case "shopName":
-     break;
     }
 
     this.setState({ formErrors, [name]: value }, () => console.log(this.state));
@@ -97,32 +124,32 @@ class Registration extends Component {
         <div className="form-wrapper">
           <h1>Create Account</h1>
           <form onSubmit={this.handleSubmit} noValidate>
-            <div className="firstName">
-              <label htmlFor="firstName">First Name</label>
+            <div className="first_name">
+              <label htmlFor="first_name">First Name</label>
               <input
-                className={formErrors.firstName.length > 0 ? "error" : null}
+                className={formErrors.first_name.length > 0 ? "error" : null}
                 placeholder="First Name"
                 type="text"
-                name="firstName"
+                name="first_name"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.firstName.length > 0 && (
-                <span className="errorMessage">{formErrors.firstName}</span>
+              {formErrors.first_name.length > 0 && (
+                <span className="errorMessage">{formErrors.first_name}</span>
               )}
             </div>
-            <div className="lastName">
-              <label htmlFor="lastName">Last Name</label>
+            <div className="last_name">
+              <label htmlFor="last_name">Last Name</label>
               <input
-                className={formErrors.lastName.length > 0 ? "error" : null}
+                className={formErrors.last_name.length > 0 ? "error" : null}
                 placeholder="Last Name"
                 type="text"
-                name="lastName"
+                name="last_name"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.lastName.length > 0 && (
-                <span className="errorMessage">{formErrors.lastName}</span>
+              {formErrors.last_name.length > 0 && (
+                <span className="errorMessage">{formErrors.last_name}</span>
               )}
             </div>
             <div className="email">
@@ -153,28 +180,29 @@ class Registration extends Component {
                 <span className="errorMessage">{formErrors.password}</span>
               )}
             </div>
-            <div className="shopName">
-              <label htmlFor="shopName">Shop Name</label>
+            <div className="shop_name">
+              <label htmlFor="shop_name">Shop Name</label>
               <input
                 placeholder="Shop Name"
                 type="text"
-                name="shopName"
+                name="shop_name"
                 noValidate
                 onChange={this.handleChange}
               />
-             {formErrors.shopName.length > 0 && (
-                <span className="errorMessage">{formErrors.shopName}</span>
+             {formErrors.shop_name.length > 0 && (
+                <span className="errorMessage">{formErrors.shop_name}</span>
               )}
             </div>
 <div className="location">
   <label htmlFor="location"> Select Location  </label>
-  <form onSubmit={this.handleSubmit}>
- <select value={this.state.value} onChange={this.handleChange}>          
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+  {/* <form onSubmit={this.handleSubmit}> */}
+ <select name='location_id' value={this.state.location_id} onChange={this.handleChange}>          
+            <option value={1}>Kenya</option>
+            <option value={2}>Tanzania</option>
+            <option value={3}>Rwanda</option>
+            <option value={4}>Uganda</option>
         </select>
-      </form>
+    {/*   </form> */}
    </div>
             <div className="createAccount">
               <button type="submit">Create Account</button>
