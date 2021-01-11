@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from 'reactstrap'
-import { Link, Route } from 'react-router-dom'
 import OwnerItems from './OwnerItems'
 import NewItem from './NewItem'
 import axios from 'axios'
@@ -26,8 +24,6 @@ function Owner() {
             <h3>{ owner.shop_name}</h3>
             <h4>{ owner.email } </h4>
             <NewItem/>
-            {/* <Link to = "/newitem"><Button color="primary" >Add Item</Button></Link>
-            <Route path="/newitem" render={() => <NewItem/>}/> */}
             <OwnerItems/>
         </div>
     )

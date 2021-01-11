@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from "axios";
+import * as yup from "yup";
+
 // handle submit axios call for submit button
 
 const NewItem = (props) => {
@@ -26,7 +28,9 @@ axios.post('https://tt-202-african-marketplace.herokuapp.com/api/auth/add-produc
 // console.log(goods)
 // console.log(typeof goods.price)
 };
-  
+const formSchema = yup.object().shape({
+  name:yup.string().required("Please enter your item's title."),
+});
     return (
     <Form onSubmit={handleSubmit}>
       <FormGroup>
