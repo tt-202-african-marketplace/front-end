@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from "axios";
 import * as yup from "yup";
+import "./Kyles.css"
 
 // handle submit axios call for submit button
 
@@ -32,7 +33,9 @@ const formSchema = yup.object().shape({
   name:yup.string().required("Please enter your item's title."),
 });
     return (
-    <Form onSubmit={handleSubmit}>
+     <>
+      <h3>Add an Item to your shop</h3>
+    <Form onSubmit={handleSubmit} className= "form">
       <FormGroup>
         <Label for="name">Item Name</Label>
         <Input type="text" name="item_name" id="name" placeholder="" value={goods.item_name} onChange={handleChange} />
@@ -60,6 +63,7 @@ const formSchema = yup.object().shape({
       </FormGroup>
       <Button value= 'submit'>Add Item</Button>
     </Form>
+    </>
   );
 }
 
