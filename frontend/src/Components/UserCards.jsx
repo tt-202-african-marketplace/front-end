@@ -7,7 +7,7 @@ import {
 const Cards = (props) => {
   const { data } = props;
   return (
-    <div>
+    <div >
       <Card>
         <CardBody>
           <CardTitle tag="h5">{ data.shop_name }</CardTitle>
