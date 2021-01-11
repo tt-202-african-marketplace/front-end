@@ -16,7 +16,7 @@ function App() {
 <Navigation/>
     <Switch>
       {/* <Route path="/" render={() => <Home/>}/> */}
-      <Route path="/login" render={() => <Login/>}/>
+      <Route exact path="/" render={() => <Login/>}/>
       <Route path="/register" render={() => <Register/>}/>
       <Route path="/products" render={() => <ItemsList/>}/>
       <Route path="/users-list" render={() => <UsersList/>}/>

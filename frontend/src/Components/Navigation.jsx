@@ -21,8 +21,8 @@ a {
 const Navigation = () => {
     return (
         <Navigationdiv>
-            <Link to="/">Home</Link>
-            <Link to="/login">Login</Link>
+            <a href="https://tt202-africanmarketplace-marketing.netlify.app/" target="_blank">Home</a>
+            <Link to="/">Login</Link>
             <Link to="/register">Register</Link>
             <Link to="/products">Products</Link>
             <Link to="/users-list">Users List</Link>
