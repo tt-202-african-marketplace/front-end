@@ -1,0 +1,43 @@
+.body{
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin: 20px auto;
+  max-width: 900px;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 300px;
+  margin:  auto;
+  margin-top: 30px;
+  
+}
+.profile{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  
+  text-align: center;
+}
+
+h2{
+  margin-top: 15px;
+}
+
+.card{
+ background-color: purple
+ ; 
+}
+
+h3{
+  text-decoration: underline;
+  text-align: center;
+}
+
+.card{
+  border-width: 5px;
+}

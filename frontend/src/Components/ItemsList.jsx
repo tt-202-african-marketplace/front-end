@@ -16,7 +16,7 @@ function ItemsList() {
     },[])
     
     return(
-        <div>
+        <div className = "body">
             {product.map(item => <Cards data={item}/>)}
         </div>
     )

@@ -20,11 +20,19 @@ function Owner() {
 
     return (
         <div>
-            <h1>{ owner.first_name }{owner.last_name}</h1>
-            <h3>{ owner.shop_name}</h3>
-            <h4>{ owner.email } </h4>
-            <NewItem/>
+           <div className = "profile">
+            <div>
+                <h2>{ owner.first_name }{owner.last_name}</h2>
+            </div>
+            <div>
+                <h4>{ owner.shop_name}</h4>
+            </div>
+            <div>
+                <p>{ owner.email } </p>
+            </div>
+            </div>
             <OwnerItems/>
+            <NewItem/>
         </div>
     )
 }
