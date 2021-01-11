@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from "axios";
 // handle submit axios call for submit button
 
-const New_Item = (props) => {
+const NewItem = (props) => {
 
   const[goods, setGoods] = useState({ item_name: "", price: "", category_id: "", description: ""})
 
@@ -54,9 +54,9 @@ axios.post('https://tt-202-african-marketplace.herokuapp.com/api/auth/add-produc
         <Label for="itemDescription">Item Description</Label>
         <Input type="textarea" name="description" id="itemDescription" value={goods.description} onChange={handleChange}/>
       </FormGroup>
-      <Button value= 'submit'>Submit</Button>
+      <Button value= 'submit'>Add Item</Button>
     </Form>
   );
 }
 
-export default New_Item;
+export default NewItem;

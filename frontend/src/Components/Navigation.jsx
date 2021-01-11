@@ -25,7 +25,8 @@ const Navigation = () => {
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
             <Link to="/products">Products</Link>
-            <Link to="/shop-owners">Shop Owners</Link>
+            <Link to="/users-list">Users List</Link>
+            <Link to="/owner">Owner</Link>
         </Navigationdiv>
     )
 }
