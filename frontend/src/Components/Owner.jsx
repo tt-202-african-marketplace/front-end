@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from 'reactstrap'
-import Card from './Cards'
-import Cards from './Cards'
+import OwnerItems from './OwnerItems'
 
 function Owner() {
     return (
@@ -11,7 +10,7 @@ function Owner() {
             <h4>Location</h4>
 
             <Button color="primary">Add Item</Button>
-<Cards/>
+            <OwnerItems/>
         </div>
     )
 }

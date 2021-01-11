@@ -5,18 +5,18 @@ import {
 } from 'reactstrap';
 
 const Cards = (props) => {
+  const { data } = props;
   return (
     <div>
       <Card>
         <CardBody>
-          <CardTitle tag="h5">Card title</CardTitle>
-          <CardSubtitle tag="h6" className="mb-2 text-muted">Card subtitle</CardSubtitle>
+          <CardTitle tag="h5">{ data.item_name }</CardTitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted">{ data.category }</CardSubtitle>
         </CardBody>
-        <img width="100%" src="/assets/318x180.svg" alt="Card image cap" />
+        {/* <img width="100%" src="/assets/318x180.svg" alt="Card image cap" /> */}
         <CardBody>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <CardLink href="#">Card Link</CardLink>
-          <CardLink href="#">Another Link</CardLink>
+          <CardText tag="h6" >{ data.price }</CardText>
+          <CardText tag="h3">{ data.description}</CardText>
         </CardBody>
       </Card>
     </div>
