@@ -1,19 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import './App.css';
-
-// import register from './Components/Register';
-// import ItemsList from './Components/ItemsList';
-import Owner from './Components/Owner';
-import NewItem from './Components/NewItem'
-// import Cards from './Components/Cards'
-// import ItemsList from './Components/ItemsList'
+import Register from './Components/Register';
+import Login from './Components/Login'
 import Navigation from './Components/Navigation'
-
-import register from './Components/Register';
-import Item from './Components/Item';
-import Owner from './Components/Owner';
-
+import ItemsList from "./Components/ItemsList";
+import UsersList from "./Components/UsersList";
+import Owner from './Components/Owner'
 
 function App() {
   
@@ -21,13 +14,15 @@ function App() {
     
     <div>
 <Navigation/>
-    
     <Switch>
-      <Route path="/new-item" render={() => <NewItem/>}/>
-      <Route path="/" render={() => <Owner/>}/>
+      {/* <Route path="/" render={() => <Home/>}/> */}
+      <Route path="/login" render={() => <Login/>}/>
+      <Route path="/register" render={() => <Register/>}/>
+      <Route path="/products" render={() => <ItemsList/>}/>
+      <Route path="/users-list" render={() => <UsersList/>}/>
+      <Route path="/owner" render={() => <Owner/>}/>
     </Switch>
 
-    {/* <ItemsList/> */}
     </div>
 
   );
