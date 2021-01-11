@@ -1,0 +1,50 @@
+/* Base */
+body {
+    background: #F3F3F3;
+    padding: 20px;
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  /* Container */
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 960px;
+    margin: 10px;
+  }
+  
+  /* Column */
+  .column {
+    
+    width: 33%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    
+    @media (max-width: 900px) {
+      & {
+        flex-basis: 50%;
+        width: 50%;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      & {
+        flex-basis: 100%;
+        width: 100%;
+      }
+    }
+  }
+  
+  /* Article (Component) */
+  .article {
+    background: #FFF;
+    margin: 0 0 20px;
+    padding: 20px;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(#000, 0.2);
+    cursor: pointer;
+    transition: 0.3s ease;
+    
+  }

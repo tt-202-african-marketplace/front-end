@@ -7,11 +7,11 @@ width: 100%;
 height 4rem;
 display: flex;
 align-items: center;
-background: #d12d21;
+background: #24b4a4;
 // justify-content: center;
 a {
     margin-left: 4rem;
-    color: black;
+    color: white;
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: bold;
