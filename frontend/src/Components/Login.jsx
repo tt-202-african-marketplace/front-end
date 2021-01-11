@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './Register.css';
- 
+import axios from 'axios';
+
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -37,13 +38,23 @@ class login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
+    const copyofState = {...this.state};
+    delete copyofState['formErrors'] ;
     if (formValid(this.state)) {
       console.log(`
         --SUBMITTING--
         Email: ${this.state.email}
         Password: ${this.state.password}
       `);
+      axios.post('https://tt-202-african-marketplace.herokuapp.com/api/auth/login', copyofState) 
+        .then(res => {
+          console.log(`AXIOS SUCCESS!`, res.data);
+          alert(res.data.message);
+        })
+        .catch(err => {
+          console.log(`AXIOS FAILURE!`, err);
+          alert(err);
+        })  
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
