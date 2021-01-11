@@ -20,7 +20,7 @@
   margin: auto;
   margin-top: 3rem;
   margin-bottom: 3rem;
-  
+
   text-align: center;
 }
 
@@ -29,7 +29,8 @@ h2{
 }
 
 .card{
- background-color: purple
+ background-color:lightgray;
+ color: black;
  ; 
 }
 
